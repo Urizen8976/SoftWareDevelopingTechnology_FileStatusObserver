@@ -59,21 +59,29 @@ void FileStatusObserver::checkSizeChanges() {  // is used by checkChanges()
 }
 
 void FileStatusObserver::checkExistChangesByPosition(int position) {  // used by checkExistChanges() (checkExistChanges() is used by checkChanges())
-    FileStatus savedStatus = filesVector[position];
+    /*FileStatus savedStatus = filesVector[position];
     FileStatus currentStatus(savedStatus.getFilePath());
-    bool isChanged = (savedStatus.isExists() != currentStatus.isExists()); // Для проверки изменения сравним имеющийся экземпляр со созданным по тому же пути
+    bool isChanged = (savedStatus.isExists() != currentStatus.isExists());*/ // Для проверки изменения сравним имеющийся экземпляр со созданным по тому же пути
+
+    FileStatus currentStatus(filesVector[position].getFilePath());
+    bool isChanged = (filesVector[position].isExists() != currentStatus.isExists());
+
     if (isChanged) {  // Если файл изменен, то перезапишем его в вектор наблюдения
         changeFileStatus(position, currentStatus);
-        existenceSignal(currentStatus.getFilePath(), currentStatus.isExists());
+        emit existenceSignal(currentStatus.getFilePath(), currentStatus.isExists());
     }
 }
 
 void FileStatusObserver::checkSizeChangesByPosition(int position) {  // is used by checkSizeChanges() (checkSizeChanges() is used by checkChanges())
-    FileStatus savedStatus = filesVector[position];
+    /*FileStatus savedStatus = filesVector[position];
     FileStatus currentStatus(savedStatus.getFilePath());
-    bool isChanged = (savedStatus.getFileSize() != currentStatus.getFileSize());  // Проверка изменения имеющегося экземпляра
+    bool isChanged = (savedStatus.getFileSize() != currentStatus.getFileSize());*/  // Проверка изменения имеющегося экземпляра
+
+    FileStatus currentStatus(filesVector[position].getFilePath());
+    bool isChanged = (filesVector[position].getFileSize() != currentStatus.getFileSize());
+
     if (isChanged) {  // Если файл изменен, то перезапишем его в вектор наблюдения
         changeFileStatus(position, currentStatus);
-        sizeSignal(currentStatus.getFilePath(), currentStatus.getFileSize());
+        emit sizeSignal(currentStatus.getFilePath(), currentStatus.getFileSize());
     }
 }
