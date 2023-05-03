@@ -11,6 +11,11 @@ FileStatusObserver::FileStatusObserver() {
     connect(this, &FileStatusObserver::alreadyDeletedSignal, this, &Slots::alreadyDeletedChangesSlot); // Соед-ие сигнала и слота объекта
 }
 
+FileStatusObserver &FileStatusObserver::Instance() {
+    static FileStatusObserver instance;
+    return instance;
+}
+
 bool FileStatusObserver::addNewFile(const QString &filePath) {
     FileStatus newFile(filePath);  // создание временного файла для проверки
     if(filesVector.contains(newFile))  // проверка наличия старого файла в списке

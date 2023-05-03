@@ -22,8 +22,11 @@ private:
     void checkExistChanges();  // Проверка всех файлов по состоянию
     void checkSizeChanges();  // Проверка всех файлов по размеру
 
-public:
+protected:
     FileStatusObserver();  // Конструктор по умолчанию класса
+
+public:
+    static FileStatusObserver &Instance();  // Статический метод, возвращающий экземпляр класса FileStatusObserver (Singleton).
 
     // Методы для доступа и работы с внутренними данными и методами класса:
     bool addNewFile(const QString &filePath);  // Добавление нового файла для отслеживания, принимает путь к файлу

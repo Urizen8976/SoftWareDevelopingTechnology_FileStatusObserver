@@ -10,9 +10,10 @@ int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
-    FileStatusObserver watcher;
+    //FileStatusObserver watcher; // Before Singleton
+    FileStatusObserver &watcher = FileStatusObserver::Instance();
 
-    QString absoluteFileWayFirstPart = "D:/Timur/Qt_2/QT_Labs/SoftWareDevTech_FileStatusObserver_NoSingleton/TestFiles/TestFile"; //Формируем 1-ую часть пути к файлу
+    QString absoluteFileWayFirstPart = "D:/Timur/Repositories/SoftWareDevelopingTechnology_FileStatusObserver/SoftWareDevTech_FileStatusObserver_NoSingleton/TestFiles/TestFile"; //Формируем 1-ую часть пути к файлу
     QString absoluteFileWaySecondPart = ".txt";  // Формируем 3-юю (и последнюю) часть пути к файлу
     QString fullAbsoluteFileWay;
     QString number;
@@ -23,8 +24,6 @@ int main(int argc, char *argv[])
         и выведем начальное состояние всех файлов*/
     }
 
-    cout << endl;
-    watcher.addNewFile("D:/Timur/Qt_2/QT_Labs/SoftWareDevTech_FileStatusObserver_NoSingleton/TestFiles/TestFile2.txt");
     cout << endl;
 
     QTimer timer {};
