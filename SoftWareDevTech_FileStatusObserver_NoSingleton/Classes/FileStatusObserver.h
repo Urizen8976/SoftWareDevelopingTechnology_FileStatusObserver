@@ -37,6 +37,7 @@ signals:
     void alreadyAddedSignal(QString fileName);  // Сигнал о повторном добавлении старого файла передает имя и состояние
     void alreadyDeletedSignal(QString fileName);
     void sizeSignal(QString fileName, qint64 size);  // Сигнал передает имя и размер
+    void existenceAndSizeSignal(QString fileName, bool isExist, qint64 size);  // Сигнал передает имя и состояние
 
 public slots:
     void checkChangesSlot();  // Проверка всех файлов

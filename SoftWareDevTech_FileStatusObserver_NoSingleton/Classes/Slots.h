@@ -14,6 +14,7 @@ public slots:
     static void sizeChangesSlot(QString fileName, qint64 size);
     static void alreadyAddedChangesSlot(QString fileName);
     static void alreadyDeletedChangesSlot(QString fileName);
+    static void existenceAndSizeChangesSlot(QString fileName, bool isExist, qint64 size);
 };
 
 
